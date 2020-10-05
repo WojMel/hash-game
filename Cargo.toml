@@ -7,8 +7,10 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-crossterm = "0.18"
+crossterm = { version = "0.18", features = ["event-stream"] }
+futures = "0.3"
 lazy_static = "1.4"
 rand = "0.7"
 structopt = "0.3"
 structopt-toml = "0.4"
+tokio = { version = "0.2", features = ["rt-core", "sync", "time", "macros", "stream"] }

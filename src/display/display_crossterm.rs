@@ -8,9 +8,7 @@ use crossterm::{
 };
 
 use crate::display::{Board, Entity, GameDisplay};
-use crate::game::{Block, EntityBlock};
-
-const CHUNK_SIZE: u16 = 3;
+use crate::game::{Block, EntityBlock, CHUNK_SIZE};
 
 pub struct CTDisplay {
     cols: u16,
@@ -73,13 +71,16 @@ impl GameDisplay for CTDisplay {
                     queue!(
                         self.stdout,
                         style::PrintStyledContent(
-                            chunk.blocks[0 + (n / board.width() as usize) * 3].styled_content()
+                            chunk.blocks[0 + (n / board.width() as usize) * CHUNK_SIZE as usize]
+                                .styled_content()
                         ),
                         style::PrintStyledContent(
-                            chunk.blocks[1 + (n / board.width() as usize) * 3].styled_content()
+                            chunk.blocks[1 + (n / board.width() as usize) * CHUNK_SIZE as usize]
+                                .styled_content()
                         ),
                         style::PrintStyledContent(
-                            chunk.blocks[2 + (n / board.width() as usize) * 3].styled_content()
+                            chunk.blocks[2 + (n / board.width() as usize) * CHUNK_SIZE as usize]
+                                .styled_content()
                         )
                     )
                     .expect("err print borad");
